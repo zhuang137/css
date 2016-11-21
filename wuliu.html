@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<style>
+* {
+  position:relative;
+}
+.container {
+  width:400px;
+  margin:20px auto;
+  background-color:#FFF93C;
+  padding-left:50px;
+  padding-top:8px;
+  color:black;
+  padding-bottom:8px;
+}
+.container li {
+  display:block;
+  line-hight:28px;
+  margin-bottom:20px;
+}
+.container li:before {
+    display:inline;
+    position:absolute;
+    content:"";
+    width:8px;
+    height:8px;
+    border-radius:4px;
+    top:7px;
+    left:-36px;
+    background-color:gray;
+    transform:translate(-50%,-50%);
+    z-index:1;
+}
+.container li.active:before {
+    display:inline;
+    position:absolute;
+    content:"";
+    width:14px;
+    height:14px;
+    border-radius:7px;
+    top:7px;
+    left:-50px;
+    background:radial-gradient(#FF505B 55%,#FFA190 45%);
+    transform:translate(50%,-50%);
+    z-index:1;
+}
+/*
+.container li:after {
+    display:none;
+    position:absolute;
+    content:"";
+    width:2px;
+    height:44px
+    background-color:red;
+    top:12px;
+    left:-37px;
+}*/
+.container:after {
+    display:inline;
+    position:absolute;
+    content:"";
+    width:2px;
+    top:14px;
+    left:13px;
+    bottom:16px;
+    background-color:gray;
+}
+.container li:last-child {
+    margin-bottom:0;
+}
+/*伪类与伪元素可以结合使用
+.container li:last-child:after {
+    display:none;
+}*/
+</style>
+<title>wuliu</title>
+</head>
+<body>
+  <div class="container">
+    <li>2015-02-18 shanghai</li>
+    <li>2015-02-18 shanghai</li>
+    <li>2015-02-18 shanghai</li>
+    <li class="active">配送员正在配送中，请耐心等候。。。。</li>
+  </div>
+</body>
+</html>
