@@ -1,0 +1,100 @@
+
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta charset="utf-8">
+<title>tab css</title>
+<style>
+/*
+自定义导航栏：
+使用了label for属性，监听隐藏的radio事件。
+*/
+*{
+    position:relative;
+}
+
+.container {
+    width:900px;
+    margin:0 auto;
+}
+.content {
+    width:100%;
+    margin-top:1px;
+    position:relative;
+    border: 1px solid black;
+    height:300px;
+    overflow:auto;
+}
+.nav {
+    background:#464646;
+    color:#fff;
+    height:50px;
+    width:100%;
+}
+/*将3个radio按钮全部隐藏掉，然后item标签监听按钮的checked事件*/
+.tab1, .tab2, .tab3{
+    display:none;
+}
+/*使用了浮动元素*/
+.nav item {
+    background:green;
+    float:left;
+    width:300px;
+    height:100%;
+}
+/*使用了相邻兄弟结合符*/
+.nav item + item {
+    box-shadow:inset 2px 0px 0px black;
+}
+/*当鼠标移动到导航栏中的label标签时，呈现手势*/
+.nav label {
+    cursor:pointer;
+}
+/*将item标签中的label居中显示，默认行内元素是居左显示的。*/
+.v_align {
+    position:absolute;
+    top:50%;
+    left:50%;
+    transform:translate(-50%,-50%);
+}
+/*使用了兄弟结合符，是相邻兄弟的扩展符号*/
+.tab1:checked ~ .nav .item1 {
+    background:#ff9000;
+}
+.tab1:checked ~ .content .content2,.tab1:checked ~ .content .content3{
+    display:none;
+}
+
+.tab2:checked ~ .nav .item2 {
+    background:#ff9000;
+}
+.tab2:checked ~ .content .content1,.tab2:checked ~ .content .content3{
+    display:none;
+}
+
+.tab3:checked ~ .nav .item3 {
+    background:#ff9000;
+}
+.tab3:checked ~ .content .content1,.tab3:checked ~ .content .content2{
+    display:none;
+}
+</style>
+</head>
+<body>
+<div class="container">
+    <input type="radio" class="tab1" id="tab1" name="tab" checked>
+    <input type="radio" class="tab2" id="tab2" name="tab">
+    <input type="radio" class="tab3" id="tab3" name="tab">
+    <div class="nav">
+        <item class="item1"><label for="tab1" class="v_align">内容1</label></item>
+        <item class="item2"><label for="tab2" class="v_align">内容2</label></item>
+        <item class="item3"><label for="tab3" class="v_align">内容3</label></item>
+    </div>
+    <div class="content">
+        <div class="content1">content1</div>
+        <div class="content2">content2</div>
+        <div class="content3">content3</div>
+    </div>
+</div>
+</body>
+</html>
