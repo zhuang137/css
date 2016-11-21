@@ -3,6 +3,14 @@
 <head>
 <meta charset="utf-8">
 <style>
+  /*
+  思路：1.使用了li的伪元素before在条目之前添加圆圈，该圆圈分为active与normal两种情况。可以自己修改一些圆圈或者条目的位置以及颜色进行美化。
+      2.竖线则使用了li父元素的after伪元素
+  总结：
+      1.可以使伪类与伪元素连起来结合使用。 比如:last-child:after
+      2.尽量将伪元素的position属性设置为absolute，可以更好的调节位置。
+      3.可以使用li.active:after结合的选择器。
+  */
 * {
   position:relative;
 }
