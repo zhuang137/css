@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>test</title>
+<style>
+* {
+    position:relative;
+}
+html,body {
+    height:100%;
+    margin:0px;
+}
+.top {
+    position:relative;
+    //height:80px;
+    height:0;
+    width:100%;
+    background:green;
+}
+.wrapper {
+    position:absolute;
+    width:100%;
+    bottom:0;
+    //top:80px;
+    top:0;
+    left:0;
+    right:0;
+    background:#bdbdbd;
+}
+/*在这里尽量使用绝对定位，不然子元素margin属性不起作用*/
+.wrapper > .login {
+    left:33%;
+    right:33%;
+    //margin:70px auto;
+    margin:150px auto;
+    height:50%;
+    background:white;
+    position:absolute;
+}
+/*margin-top不生效的问题*/
+/*相对于同一级的上一个块元素的间隔
+如果没有上一个块元素，那么会相对于绝对定位的父元素的内边框
+如果父元素不是绝对定位，则忽略该值
+*/
+.login-header {
+    margin:20px;
+    font-size:28px;
+    //top:20px;
+    text-align:center;
+    //background:green;
+}
+.login-nav {
+    width:70%;
+    height:70%;
+    margin:20px auto;
+    //background:gray;
+}
+.login-nav .content {
+    width:100%;
+}
+.content .content1 {
+    width:100%;
+}
+/*
+padding-left=40px,右边会超出父元素
+padding-right=-40px可以抵消，但是抵消后
+*/
+.content1 .edit-text {
+    width:100%;
+    border:1px solid #505050;
+    height:46px;
+    margin:20px 0 0 0;
+    border-radius:5px;
+    //padding:0 0 0 40px;
+    font-size:22px;
+}
+input[class~="edit-text"]:focus {
+    border:1px solid #0046e0;
+    box-shadow:0 0 2px #0046e0;
+}
+.login-nav .tab {
+    width:100%;
+    height:40px;
+    background:green;
+}
+.login-footer {
+    margin-top:20px;
+    width:100%;
+}
+.login-btn {
+    width:100%;
+    background-color:#206dff;
+    padding:12px 0;
+    color:white;
+    text-align:center;
+    cursor:pointer;
+    -webkit-transition-duration:0.5s;
+    transition-duration:0.5s;
+}
+.login-btn:hover {
+    background-color:green;
+}
+.login-footer .account-tip {
+    text-align:center;
+    margin-top:20px;
+}
+.account-tip .blue-font {
+    color:#206dff;
+}
+
+input[class^='tab'] {
+    display:none;
+}
+.tab item {
+    background:#f1f1f1;
+    float:left;
+    width:25%;
+    height:100%;
+}
+item a {
+    text-decoration:none;
+    color:black;
+}
+.tab item:hover {
+    background:#DCDCDC;
+}
+/*使用了相邻兄弟结合符*/
+.tab item + item {
+    box-shadow:inset 2px 0px 0px white;
+}
+/*当鼠标移动到导航栏中的label标签时，呈现手势*/
+.tab label {
+    cursor:pointer;
+}
+/*将item标签中的label居中显示，默认行内元素是居左显示的。*/
+.v_align {
+    position:absolute;
+    top:50%;
+    left:50%;
+    transform:translate(-50%,-50%);
+}
+.v-center {
+    position:absolute;
+    top:50%;
+    transform:translate(2%,-50%);
+}
+/*使用了兄弟结合符，是相邻兄弟的扩展符号*/
+.tab1:checked ~ .tab .item1 {
+    background:#DCDCDC;
+}
+.tab1:checked ~ .content .content2,.tab1:checked ~ .content .content3,.tab1:checked ~ .content .content4 {
+    display:none;
+}
+
+.tab2:checked ~ .tab .item2 {
+    background:#DCDCDC;
+}
+.tab2:checked ~ .content .content1,.tab2:checked ~ .content .content3,.tab2:checked ~ .content .content4 {
+    display:none;
+}
+
+.tab3:checked ~ .tab .item3 {
+    background:#DCDCDC;
+}
+.tab3:checked ~ .content .content1,.tab3:checked ~ .content .content2, .tab3:checked ~ .content .content4{
+    display:none;
+}
+.tab4:checked ~ .tab .item4 {
+    background:#DCDCDC;
+}
+.tab4:checked ~ .content .content1,.tab4:checked ~ .content .content2, .tab4:checked ~ .content .content3{
+    display:none;
+}
+
+</style>
+</head>
+<body>
+<div class="top"></div>
+<div class="wrapper">
+    <div class="login">
+        <div class="login-header">登录</div>
+        <div class="login-nav">
+            <input type="radio" class="tab1" name="tab" id="tab1">
+            <input type="radio" class="tab2" name="tab" id="tab2">
+            <input type="radio" class="tab3" name="tab" id="tab3">
+            <input type="radio" class="tab4" name="tab" id="tab4">
+            <div class="tab">
+                <item class="item1"><label for="tab1" class="v_align">邮箱</label></item>
+                <item class="item2"><label for="tab2" class="v_align">手机号</label></item>
+                <item class="item3"><label for="tab3" class="v_align"><a href="http://www.github.com">github</a></label></item>
+                <item class="item4"><label for="tab4" class="v_align">微信</label></item>
+            </div>
+            <div class="content">
+                <div class="content1">
+                  <input maxlength="25" type="emai" class="edit-text" placeholder="email" required>
+                  <input maxlength="16" type="password" class="edit-text" placeholder="passwd" required>
+                  <div style="margin-top:15px;">
+                    <input type="checkbox"><label class="v-center">记住我</label>
+                    <div style="float:right;margin-right:10px;color:green;">
+                      <a href="http://www.baidu.com" target="_blank"> 忘记密码?</a>
+                    </div>
+                  </div>
+                  <div class="login-footer">
+                    <div class="login-btn">登录</div>
+                    <div class="account-tip"><span>没有帐号?<a style="text-decoration:none;" href="http://www.baidu.com"><i class="blue-font">免费注册&gt;&gt;</i></a></span></div>
+                  </div>
+                </div>
+                <div class="content2">
+                
+                </div>
+                <div class="content3">
+                
+                </div>
+                <div class="content4">
+                
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>
