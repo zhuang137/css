@@ -18,6 +18,10 @@ html,body {
     width:100%;
     background:green;
 }
+/*
+这里通过绝对定位，使用了top bottom这些元素。
+不能使用100%，因为左边会出现滑动条，影响体验。
+*/
 .wrapper {
     position:absolute;
     width:100%;
@@ -27,8 +31,12 @@ html,body {
     left:0;
     right:0;
     background:#bdbdbd;
+    text-align:center;
 }
-/*在这里尽量使用绝对定位，不然子元素margin属性不起作用*/
+/*在这里尽量使用绝对定位，不然子元素margin属性不起作用
+该段代码被注释掉，原因是因为浏览器缩小会产生问题。
+*/
+/*
 .wrapper > .login {
     left:33%;
     right:33%;
@@ -37,6 +45,16 @@ html,body {
     height:50%;
     background:white;
     position:absolute;
+}*/
+/*
+使用了inline-block与text-align属性结合居中。
+*/
+.wrapper > .login {
+    display:inline-block;
+    width:640px;
+    height:500px;
+    margin-top:150px;
+    background:white;
 }
 /*margin-top不生效的问题*/
 /*相对于同一级的上一个块元素的间隔
@@ -74,6 +92,7 @@ padding-right=-40px可以抵消，但是抵消后
     border-radius:5px;
     //padding:0 0 0 40px;
     font-size:22px;
+    display:block;
 }
 input[class~="edit-text"]:focus {
     border:1px solid #0046e0;
@@ -195,7 +214,7 @@ item a {
                 <div class="content1">
                   <input maxlength="25" type="emai" class="edit-text" placeholder="email" required>
                   <input maxlength="16" type="password" class="edit-text" placeholder="passwd" required>
-                  <div style="margin-top:15px;">
+                  <div style="margin-top:15px;text-align:left;"><!--因为父元素的text-align为center的，所以这里要设置为left。因为text-align有继承性-->
                     <input type="checkbox"><label class="v-center">记住我</label>
                     <div style="float:right;margin-right:10px;color:green;">
                       <a href="http://www.baidu.com" target="_blank"> 忘记密码?</a>
